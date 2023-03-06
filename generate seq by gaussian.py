@@ -44,11 +44,9 @@ def gen_seq():
             num_seq.append(first_selected_num)
 
         gaussion_mat = gen_gaussain_matrix(33)
-        # print(gaussion_mat.shape)
         next_state_probs = gaussion_mat[selected_num]
 
         # 随机选择下一个状态
-        # print(len(original_seq), len(next_state_probs))
         next_state_probs /= np.sum(next_state_probs)
 
         selected_num = np.random.choice(original_seq, p=next_state_probs)
@@ -61,11 +59,6 @@ def gen_seq():
         if len(num_seq) == 6:
             break
 
-        # 从原序列中删除该数
-        # original_seq.remove(selected_num)
-
-    # 输出数字序列
-    # print(num_seq)
     return list(map(lambda x: x + 1, num_seq)), first_selected_num + 1
 
 
@@ -77,5 +70,7 @@ if __name__ == '__main__':
     for _ in range(5):
         res, first_selected_num = gen_seq()
         blue_num = gen_blue_num()
-        print("first selected num:{0}, generate: {1} | {2}, sum: {3}".format(first_selected_num, sorted(res), blue_num,
+        print("first selected num:{0}, generate: {1} | {2}, sum: {3}".format(first_selected_num, 
+                                                                             sorted(res), 
+                                                                             blue_num,
                                                                              sum(res)))
